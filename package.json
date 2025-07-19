@@ -7,7 +7,6 @@
   },
   "dependencies": {
     "express": "^4.18.2",
-    "node-fetch": "^2.6.7" // <-- ¡Hemos añadido 'node-fetch'!
-                            // Usa "^2.6.7" para compatibilidad amplia
+    "node-fetch": "^2.6.7" 
   }
 }
