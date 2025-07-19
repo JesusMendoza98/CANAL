@@ -1,7 +1,3 @@
-const express = require('express');
-const fetch = require('node-fetch');
-const app = express();
-const cors = require('cors'); 
 {
   "name": "tudn-proxy",
   "version": "1.0.0",
