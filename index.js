@@ -5,11 +5,9 @@ const app = express();
 
 const PORT = process.env.PORT || 3000;
 
-// URL base del stream original
 const BASE_URL = 'https://streaming-live-fcdn.api.prd.univisionnow.com/tudn/';
 const M3U8_PATH = 'tudn.isml/hls/tudn.m3u8';
 
-// Ruta principal del proxy
 app.get('/tudn', async (req, res) => {
   try {
     const response = await fetch(BASE_URL + M3U8_PATH, {
@@ -22,8 +20,8 @@ app.get('/tudn', async (req, res) => {
 
     let body = await response.text();
 
-    // Reescribe los segmentos .ts y listas .m3u8 internas
-    body = body.replace(/(tudn\\.isml\\/hls\\/[^#\\n\"]+)/g, (match) => `/segment/${match}`);
+    // Reescribe las rutas internas .ts y .m3u8 para pasarlas por el proxy
+    body = body.replace(/tudn\.isml\/hls\/[^#\n"]+/g, (match) => `/segment/${match}`);
 
     res.set('Content-Type', 'application/vnd.apple.mpegurl');
     res.send(body);
@@ -33,7 +31,6 @@ app.get('/tudn', async (req, res) => {
   }
 });
 
-// Ruta para servir segmentos del video
 app.get('/segment/*', async (req, res) => {
   const segmentPath = req.params[0];
   const segmentUrl = BASE_URL + segmentPath;
