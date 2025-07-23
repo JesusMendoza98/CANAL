@@ -1,43 +1,60 @@
+// index.js
 const express = require('express');
-const fetch = require('node-fetch'); // Cambiado de 'request'
+const fetch = require('node-fetch');
 const app = express();
 
 const PORT = process.env.PORT || 3000;
 
-const REAL_URL = "https://streaming-live-fcdn.api.prd.univisionnow.com/tudn/tudn.isml/hls/tudn.m3u8";
+// URL base del stream original
+const BASE_URL = 'https://streaming-live-fcdn.api.prd.univisionnow.com/tudn/';
+const M3U8_PATH = 'tudn.isml/hls/tudn.m3u8';
 
-app.get('/tudn.m3u8', async (req, res) => { // 'async' es importante aquí
-    try {
-        const response = await fetch(REAL_URL, {
-            headers: {
-                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)',
-                'Referer': 'https://www.tudn.com',
-                'Origin': 'https://www.tudn.com'
-            }
-        });
+// Ruta principal del proxy
+app.get('/tudn', async (req, res) => {
+  try {
+    const response = await fetch(BASE_URL + M3U8_PATH, {
+      headers: {
+        'User-Agent': 'Mozilla/5.0',
+        'Origin': 'https://www.tudn.com',
+        'Referer': 'https://www.tudn.com'
+      }
+    });
 
-        if (!response.ok) {
-            // Manejar errores de respuesta HTTP (ej. 403 Forbidden si aún hay geo-restricción)
-            console.error(`Error del servidor de TUDN: ${response.status} ${response.statusText}`);
-            return res.status(response.status).send(`Error al acceder al stream: ${response.statusText}`);
-        }
+    let body = await response.text();
 
-        // Copiar los encabezados relevantes del stream original (Content-Type es importante)
-        response.headers.forEach((value, name) => {
-            if (name === 'content-type' || name === 'cache-control' || name === 'pragma' || name === 'expires') {
-                res.setHeader(name, value);
-            }
-        });
+    // Reescribe los segmentos .ts y listas .m3u8 internas
+    body = body.replace(/(tudn\\.isml\\/hls\\/[^#\\n\"]+)/g, (match) => `/segment/${match}`);
 
-        // Enviar el stream directamente al cliente
-        response.body.pipe(res);
+    res.set('Content-Type', 'application/vnd.apple.mpegurl');
+    res.send(body);
+  } catch (err) {
+    console.error('Error al obtener la playlist:', err);
+    res.status(500).send('Error al obtener el stream');
+  }
+});
 
-    } catch (error) {
-        console.error('Error en el proxy:', error);
-        res.status(500).send('Error interno del proxy al intentar acceder al stream.');
-    }
+// Ruta para servir segmentos del video
+app.get('/segment/*', async (req, res) => {
+  const segmentPath = req.params[0];
+  const segmentUrl = BASE_URL + segmentPath;
+
+  try {
+    const response = await fetch(segmentUrl, {
+      headers: {
+        'User-Agent': 'Mozilla/5.0',
+        'Origin': 'https://www.tudn.com',
+        'Referer': 'https://www.tudn.com'
+      }
+    });
+
+    res.set('Content-Type', response.headers.get('content-type') || 'application/octet-stream');
+    response.body.pipe(res);
+  } catch (err) {
+    console.error('Error al obtener segmento:', err);
+    res.status(500).send('Error al obtener segmento');
+  }
 });
 
 app.listen(PORT, () => {
-    console.log(`Proxy server running on port ${PORT}`);
+  console.log(`Proxy activo en puerto ${PORT}`);
 });
