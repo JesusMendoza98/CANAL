@@ -40,7 +40,7 @@ app.get('/tudn', async (req, res) => {
   }
 });
 
-// Maneja las sublistas (.m3u8) de variantes
+// Manejo de variantes (listas secundarias)
 app.get('/variant/:file', async (req, res) => {
   const file = req.params.file;
   const url = BASE_URL + 'tudn.isml/hls/' + file;
@@ -56,8 +56,8 @@ app.get('/variant/:file', async (req, res) => {
 
     let body = await response.text();
 
-    // Reescribir segmentos a /segment/
-    body = body.replace(/tudn\.isml\/hls\/[^#\n"]+/g, (match) => `/segment/${match}`);
+    // Reescribir todas las URLs relativas a segmentos para que pasen por /segment/
+    body = body.replace(/(tudn\.isml\/hls\/[^#\n"]+)/g, (match) => `/segment/${match}`);
 
     res.set('Content-Type', 'application/vnd.apple.mpegurl');
     res.send(body);
@@ -92,4 +92,5 @@ app.get('/segment/*', async (req, res) => {
 app.listen(PORT, () => {
   console.log(`Proxy activo en puerto ${PORT}`);
 });
+
 
