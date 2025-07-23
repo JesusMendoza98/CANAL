@@ -1,11 +1,13 @@
 {
   "name": "tudn-proxy",
   "version": "1.0.0",
-  "description": "Proxy para reproducir TUDN sin bloqueo geográfico",
+  "description": "Proxy para streaming TUDN con reescritura de playlists y segmentos",
   "main": "index.js",
   "scripts": {
     "start": "node index.js"
   },
+  "author": "Tu Nombre",
+  "license": "MIT",
   "dependencies": {
     "express": "^4.18.2",
     "node-fetch": "^2.6.7"
