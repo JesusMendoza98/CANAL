@@ -8,6 +8,7 @@ const PORT = process.env.PORT || 3000;
 const BASE_URL = 'https://streaming-live-fcdn.api.prd.univisionnow.com/tudn/';
 const M3U8_PATH = 'tudn.isml/hls/tudn.m3u8';
 
+// Ruta principal del proxy
 app.get('/tudn', async (req, res) => {
   try {
     const response = await fetch(BASE_URL + M3U8_PATH, {
@@ -31,6 +32,7 @@ app.get('/tudn', async (req, res) => {
   }
 });
 
+// Ruta para servir segmentos del video
 app.get('/segment/*', async (req, res) => {
   const segmentPath = req.params[0];
   const segmentUrl = BASE_URL + segmentPath;
@@ -52,6 +54,12 @@ app.get('/segment/*', async (req, res) => {
   }
 });
 
+// Ruta raíz opcional para evitar "Not Found"
+app.get('/', (req, res) => {
+  res.send('Este es el proxy de TUDN. Usa /tudn');
+});
+
 app.listen(PORT, () => {
   console.log(`Proxy activo en puerto ${PORT}`);
 });
+
