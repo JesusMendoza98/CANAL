@@ -16,7 +16,7 @@ app.get('/', (req, res) => {
 });
 
 // Ruta principal para servir la lista de reproducción maestra (.m3u8)
-app.get('/tudn', async (req, res) => {
+app.get('/tudn.m3u8', async (req, res) => {
   try {
     // Realiza una solicitud al servidor original de TUDN para obtener el manifiesto maestro
     const response = await fetch(BASE_URL + M3U8_PATH, {
