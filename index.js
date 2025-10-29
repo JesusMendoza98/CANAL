@@ -45,7 +45,15 @@ const channels = {
         manifest: 'kftr.m3u8',     // Nombre del manifiesto principal
         origin: 'https://www.tudn.com',
         referer: 'https://www.tudn.com'
+    },
+ canal5: {
+        base: 'https://streaming-live-fcdn.api.prd.univisionnow.com/wfut/',
+        prefix: 'wfut.isml/hls/', // Directorio donde viven las variantes y segmentos
+        manifest: 'wfut.m3u8',     // Nombre del manifiesto principal
+        origin: 'https://www.tudn.com',
+        referer: 'https://www.tudn.com'
     }
+   
 };
 
 // 🏠 Ruta raíz informativa
