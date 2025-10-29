@@ -38,6 +38,13 @@ const channels = {
         manifest: 'kmex.m3u8',     // Nombre del manifiesto principal
         origin: 'https://www.tudn.com',
         referer: 'https://www.tudn.com'
+    },
+     canal4: {
+        base: 'https://streaming-live-fcdn.api.prd.univisionnow.com/kftr/',
+        prefix: 'kftr.isml/hls/', // Directorio donde viven las variantes y segmentos
+        manifest: 'kftr.m3u8',     // Nombre del manifiesto principal
+        origin: 'https://www.tudn.com',
+        referer: 'https://www.tudn.com'
     }
 };
 
