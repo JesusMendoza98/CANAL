@@ -26,11 +26,11 @@ const channels = {
         referer: 'https://www.tudn.com'
     },
     canal2: {
-        base: 'https://e3.thetvapp.to/',
-        prefix: 'hls/espn-deportes/', // Directorio donde viven las variantes y segmentos
-        manifest: 'index.m3u8',     // Nombre del manifiesto principal
-        origin: 'https://e3.thetvapp.to',
-        referer: 'https://e3.thetvapp.to'
+        base: 'https://streaming-live-fcdn.api.prd.univisionnow.com/zona/',
+        prefix: 'zona.isml/hls/', // Directorio donde viven las variantes y segmentos
+        manifest: 'tudn.m3u8',     // Nombre del manifiesto principal
+        origin: 'https://www.tudn.com',
+        referer: 'https://www.tudn.com'
     }
 };
 
