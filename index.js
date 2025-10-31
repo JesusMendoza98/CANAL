@@ -102,7 +102,7 @@ const channels = {
         origin: 'https://www.tudn.com',
         referer: 'https://www.tudn.com'
     },
-       canal13: {
+       canal14: {
         base: 'https://streaming-live-fcdn.api.prd.univisionnow.com/vix/',
         prefix: 'vix.isml/hls/', // Directorio donde viven las variantes y segmentos
         manifest: 'vix.m3u8',     // Nombre del manifiesto principal
