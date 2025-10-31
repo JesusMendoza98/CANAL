@@ -59,7 +59,65 @@ const channels = {
         manifest: 'wxtv.m3u8',     // Nombre del manifiesto principal
         origin: 'https://www.tudn.com',
         referer: 'https://www.tudn.com'
+    },
+     canal7: {
+        base: 'https://streaming-live-fcdn.api.prd.univisionnow.com/unieast/',
+        prefix: 'unieast.isml/hls/', // Directorio donde viven las variantes y segmentos
+        manifest: 'unieast.m3u8',     // Nombre del manifiesto principal
+        origin: 'https://www.tudn.com',
+        referer: 'https://www.tudn.com'
+    },
+       canal8: {
+        base: 'https://streaming-live-fcdn.api.prd.univisionnow.com/uniwest/',
+        prefix: 'uniwest.isml/hls/', // Directorio donde viven las variantes y segmentos
+        manifest: 'uniwest.m3u8',     // Nombre del manifiesto principal
+        origin: 'https://www.tudn.com',
+        referer: 'https://www.tudn.com'
+    },
+       canal9: {
+        base: 'https://streaming-live-fcdn.api.prd.univisionnow.com/umaeast/',
+        prefix: 'umaeast.isml/hls/', // Directorio donde viven las variantes y segmentos
+        manifest: 'umaeast.m3u8',     // Nombre del manifiesto principal
+        origin: 'https://www.tudn.com',
+        referer: 'https://www.tudn.com'
+    },
+     canal10: {
+        base: 'https://streaming-live-fcdn.api.prd.univisionnow.com/umawest/',
+        prefix: 'umawest.isml/hls/', // Directorio donde viven las variantes y segmentos
+        manifest: 'umawest.m3u8',     // Nombre del manifiesto principal
+        origin: 'https://www.tudn.com',
+        referer: 'https://www.tudn.com'
+    },
+    canal11: {
+        base: 'https://streaming-live-fcdn.api.prd.univisionnow.com/galaeast/',
+        prefix: 'galaeast.isml/hls/', // Directorio donde viven las variantes y segmentos
+        manifest: 'galaeast.m3u8',     // Nombre del manifiesto principal
+        origin: 'https://www.tudn.com',
+        referer: 'https://www.tudn.com'
+    },
+     canal12: {
+        base: 'https://streaming-live-fcdn.api.prd.univisionnow.com/galawest/',
+        prefix: 'galawest.isml/hls/', // Directorio donde viven las variantes y segmentos
+        manifest: 'galawest.m3u8',     // Nombre del manifiesto principal
+        origin: 'https://www.tudn.com',
+        referer: 'https://www.tudn.com'
+    },
+       canal13: {
+        base: 'https://streaming-live-fcdn.api.prd.univisionnow.com/vix/',
+        prefix: 'vix.isml/hls/', // Directorio donde viven las variantes y segmentos
+        manifest: 'vix.m3u8',     // Nombre del manifiesto principal
+        origin: 'https://www.tudn.com',
+        referer: 'https://www.tudn.com'
+    },
+       canal13: {
+        base: 'https://streaming-live-fcdn.api.prd.univisionnow.com/n27/',
+        prefix: 'n247.isml/hls/', // Directorio donde viven las variantes y segmentos
+        manifest: 'n247.m3u8',     // Nombre del manifiesto principal
+        origin: 'https://www.tudn.com',
+        referer: 'https://www.tudn.com'
     }
+    
+    
 };
 
 // 🏠 Ruta raíz informativa
