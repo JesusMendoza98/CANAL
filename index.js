@@ -102,15 +102,15 @@ const channels = {
         origin: 'https://www.tudn.com',
         referer: 'https://www.tudn.com'
     },
-       canal14: {
+       canal13: {
         base: 'https://streaming-live-fcdn.api.prd.univisionnow.com/vix/',
         prefix: 'vix.isml/hls/', // Directorio donde viven las variantes y segmentos
         manifest: 'vix.m3u8',     // Nombre del manifiesto principal
         origin: 'https://www.tudn.com',
         referer: 'https://www.tudn.com'
     },
-       canal13: {
-        base: 'https://streaming-live-fcdn.api.prd.univisionnow.com/n27/',
+       canal14: {
+        base: 'https://streaming-live-fcdn.api.prd.univisionnow.com/n247/',
         prefix: 'n247.isml/hls/', // Directorio donde viven las variantes y segmentos
         manifest: 'n247.m3u8',     // Nombre del manifiesto principal
         origin: 'https://www.tudn.com',
